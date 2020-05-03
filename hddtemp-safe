@@ -6,13 +6,13 @@ local luxio = require "luxio"
 
 local DEFAULT_PORT = 7634
 
-local function log_error()
-    io.stderr:write(string.format("%s does not exist!\n", args.disk))
+local function log_error(msg_template, ...)
+    io.stderr:write(string.format(msg_template .. "\n", table.unpack(arg)))
 end
 
 local function main ()
     local parser = argparse("hddtemp-safe", "Get HDD temperature from hddtemp daemon")
-    parser:option("-p --port", "hddtemp's listening port (default 7634)", DEFAULT_PORT)
+    parser:option("-p --port", string.format("hddtemp's listening port (default %d)", DEFAULT_PORT), DEFAULT_PORT)
     parser:argument("disk", "Disk path, i.e. /dev/sda")
 
     local args = parser:parse()
@@ -21,7 +21,7 @@ local function main ()
     local s, _ = luxio.stat(args.disk)
 
     if s ~= 0 then
-        io.stderr:write(string.format("%s does not exist!\n", args.disk))
+        log_error("%s does not exist!", args.disk)
         os.exit(-1)
     end
 
@@ -29,7 +29,7 @@ local function main ()
     client:settimeout(1)
     local sk = client:connect('127.0.0.1', port)
     if sk == nil then
-        io.stderr:write(string.format())
+        log_error("Failed to connect to hddtemp daemon. Did you configured it to run as daemon?")
         os.exit(-2)
     end
     local content, err = client:receive('*a')
