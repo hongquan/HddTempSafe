@@ -13,7 +13,7 @@ end
 local function main ()
     local parser = argparse("hddtemp-safe", "Get HDD temperature from hddtemp daemon")
     parser:option("-p --port", string.format("hddtemp's listening port (default %d)", DEFAULT_PORT), DEFAULT_PORT)
-    parser:argument("disk", "Disk path, i.e. /dev/sda")
+    parser:argument("disk", "Disk path, e.g. /dev/sda")
 
     local args = parser:parse()
     local port = args.port
