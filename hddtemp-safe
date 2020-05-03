@@ -33,12 +33,15 @@ local function main ()
         os.exit(-2)
     end
     local content, err = client:receive('*a')
+    client:close()
     if content == nil then
+        -- No data from hddtemp
         print("")
         return
     end
-    client:close()
-    local temp, unit = content:match("|[/a-z0-9]+|[-%w]+|(%d*)|([CF*])|")
+    -- Sample response from hddtemp: |/dev/sda|ST1000LM035-1RK172|37|C||/dev/sdb|KINGSTON SA400M8120G|36|C|
+    local pattern = "|" .. args.disk .. "|[- %w]+|(%d*)|([CF*])|"
+    local temp, unit = content:gmatch(pattern)
     print(temp)
 end
 
