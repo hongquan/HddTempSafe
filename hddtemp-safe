@@ -41,7 +41,7 @@ local function main ()
     end
     -- Sample response from hddtemp: |/dev/sda|ST1000LM035-1RK172|37|C||/dev/sdb|KINGSTON SA400M8120G|36|C|
     local pattern = "|" .. args.disk .. "|[- %w]+|(%d*)|([CF*])|"
-    local temp, unit = content:gmatch(pattern)
+    local temp, unit = content:match(pattern)
     print(temp)
 end
 
