@@ -1,0 +1,45 @@
+#!/usr/bin/env lua
+
+local argparse = require "argparse"
+local socket = require "socket"
+local luxio = require "luxio"
+
+local DEFAULT_PORT = 7634
+
+local function log_error()
+    io.stderr:write(string.format("%s does not exist!\n", args.disk))
+end
+
+local function main ()
+    local parser = argparse("hddtemp-safe", "Get HDD temperature from hddtemp daemon")
+    parser:option("-p --port", "hddtemp's listening port (default 7634)", DEFAULT_PORT)
+    parser:argument("disk", "Disk path, i.e. /dev/sda")
+
+    local args = parser:parse()
+    local port = args.port
+
+    local s, _ = luxio.stat(args.disk)
+
+    if s ~= 0 then
+        io.stderr:write(string.format("%s does not exist!\n", args.disk))
+        os.exit(-1)
+    end
+
+    local client = socket.tcp()
+    client:settimeout(1)
+    local sk = client:connect('127.0.0.1', port)
+    if sk == nil then
+        io.stderr:write(string.format())
+        os.exit(-2)
+    end
+    local content, err = client:receive('*a')
+    if content == nil then
+        print("")
+        return
+    end
+    client:close()
+    local temp, unit = content:match("|[/a-z0-9]+|[-%w]+|(%d*)|([CF*])|")
+    print(temp)
+end
+
+main()
