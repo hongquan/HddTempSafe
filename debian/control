@@ -1,0 +1,19 @@
+Source: hddtemp-safe
+Section: utils
+Priority: optional
+Maintainer: Nguyễn Hồng Quân <ng.hong.quan@gmail.com>
+Build-Depends: debhelper (>= 9), debhelper-compat (= 12),  dh-lua
+Standards-Version: 4.5.0
+Homepage: https://github.com/hongquan/HddTempSafe
+Vcs-Git: git://git@github.com:hongquan/HddTempSafe.git
+Vcs-Browser: https://github.com/hongquan/HddTempSafe
+
+Package: hddtemp-safe
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: lua5.3, lua-luxio, lua-argparse, lua-socket, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${lua:Provides}
+XB-Lua-Versions: ${lua:Versions}
+Description: Tool to read hard disk temperature from hddtemp's TCP interface.
+ Alternative method to get hddtemp result without root permission.
