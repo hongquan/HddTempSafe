@@ -1,4 +1,4 @@
-#!/usr/bin/env lua
+#!/usr/bin/env lua5.3
 
 local argparse = require "argparse"
 local socket = require "socket"
