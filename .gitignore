@@ -49,3 +49,4 @@ debian/debhelper-build-stamp
 debian/hddtemp-safe.*
 debian/lua-hddtemp-safe*
 debian/.debhelper
+debian/files
