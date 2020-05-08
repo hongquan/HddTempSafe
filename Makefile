@@ -11,11 +11,11 @@ endif
 endif
 
 all:
-	@echo $(PREFIX)
 
-install: hddtemp-safe
+
+install: hddtemp-safe.lua
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp $< $(DESTDIR)$(PREFIX)/bin/
+	cp $< $(DESTDIR)$(PREFIX)/bin/hddtemp-safe
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/hddtemp-safe

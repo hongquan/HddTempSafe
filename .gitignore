@@ -50,3 +50,5 @@ debian/hddtemp-safe.*
 debian/lua-hddtemp-safe*
 debian/.debhelper
 debian/files
+# This file is copied from original file for Debian build only
+hddtemp-safe

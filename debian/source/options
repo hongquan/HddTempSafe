@@ -1,1 +1,2 @@
 tar-ignore = ".git"
+tar-ignore = hddtemp-safe
