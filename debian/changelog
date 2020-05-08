@@ -1,4 +1,4 @@
-hddtemp-safe (0.1.1-1) unstable; urgency=low
+hddtemp-safe (0.1.1-2) focal; urgency=low
 
   * Fix build config: The package is arch-independent.
 
