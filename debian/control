@@ -9,10 +9,9 @@ Vcs-Git: git://git@github.com:hongquan/HddTempSafe.git
 Vcs-Browser: https://github.com/hongquan/HddTempSafe
 
 Package: hddtemp-safe
-Architecture: any
-Multi-Arch: same
+Architecture: all
 Pre-Depends: ${misc:Pre-Depends}
-Depends: lua5.3, lua-luxio, lua-argparse, lua-socket, ${shlibs:Depends}, ${misc:Depends}
+Depends: hddtemp, lua5.3, lua-luxio, lua-argparse, lua-socket, ${shlibs:Depends}, ${misc:Depends}
 Provides: ${lua:Provides}
 XB-Lua-Versions: ${lua:Versions}
 Description: Tool to read hard disk temperature from hddtemp's TCP interface.

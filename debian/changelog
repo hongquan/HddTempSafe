@@ -1,3 +1,10 @@
+hddtemp-safe (0.1.1-1) unstable; urgency=low
+
+  * Fix build config: The package is arch-independent.
+
+ -- Nguyễn Hồng Quân <ng.hong.quan@gmail.com>  Fri, 08 May 2020 20:54:39 +0700
+
+
 hddtemp-safe (0.1-focal1) focal; urgency=low
 
   * Initial release.
